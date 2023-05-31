@@ -36,6 +36,7 @@ export default [
         },
       }),
     ],
+    external: ["react", "react-dom"],
   },
   {
     input: "dist/esm/types/index.d.ts",

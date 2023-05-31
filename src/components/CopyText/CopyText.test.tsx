@@ -24,7 +24,6 @@ describe("CopyText", () => {
     await user.click(button);
 
     const clipboardText = await navigator.clipboard.readText();
-    console.log(clipboardText)
     expect(clipboardText).toBe('Text to copy');
   });
 });

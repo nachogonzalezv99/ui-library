@@ -15,7 +15,7 @@ function Spinner({ size = "sm" }: { size?: "sm" | "md" | "lg" }) {
     >
       <svg
         aria-hidden="true"
-        className={`${sizeVariants[size]} text-gray-200 animate-spin dark:text-gray-600 fill-blue-600`}
+        className={`${sizeVariants[size]} text-gray-200 animate-spin dark:text-gray-600 fill-blue-700`}
         viewBox="0 0 100 101"
         fill="none"
         xmlns="http://www.w3.org/2000/svg"

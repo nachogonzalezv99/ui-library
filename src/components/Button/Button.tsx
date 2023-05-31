@@ -35,18 +35,20 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     <button
       ref={ref}
       disabled={disabled || isLoading}
-      className={`relative rounded-md transition-colors cursor-pointer ${buttonVariants[variant]} ${buttonSize[size]} ${className}`}
+      className={` rounded-md transition-colors cursor-pointer ${buttonVariants[variant]} ${buttonSize[size]} ${className}`}
       {...props}
     >
-      {isLoading && <Spinner />}
-      <span
-        className={clsx(
-          isLoading && "invisible",
-          "flex items-center justify-center text-center gap-2"
-        )}
-      >
-        {children}
-      </span>
+      <div className="relative">
+        {isLoading && <Spinner />}
+        <span
+          className={clsx(
+            isLoading && "invisible",
+            "flex items-center justify-center text-center gap-2"
+          )}
+        >
+          {children}
+        </span>
+      </div>
     </button>
   );
 });

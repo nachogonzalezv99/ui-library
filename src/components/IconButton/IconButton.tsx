@@ -34,20 +34,22 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           <Tooltip.Trigger asChild>
             <button
               ref={ref}
-              className={`relative focus:ring-2 focus:ring-blue-300  focus:outline-none hover:bg-gray-600 hover:bg-opacity-10 disabled:text-gray-300 
+              className={` focus:ring-2 focus:ring-blue-300  focus:outline-none hover:bg-gray-600 hover:bg-opacity-10 disabled:text-gray-300 
       disabled:bg-opacity-0  rounded-full flex items-center justify-center  text-gray-600 transition-colors ${iconButtonVariants[size]} ${className}`}
               disabled={isDisabled}
               {...other}
             >
-              {isLoading && <Spinner />}
-              <span
-                className={clsx(
-                  isLoading && "invisible",
-                  "flex items-center justify-center text-center gap-2"
-                )}
-              >
-                {children}
-              </span>
+              <div className="relative">
+                {isLoading && <Spinner />}
+                <span
+                  className={clsx(
+                    isLoading && "invisible",
+                    "flex items-center justify-center text-center gap-2"
+                  )}
+                >
+                  {children}
+                </span>
+              </div>
             </button>
           </Tooltip.Trigger>
           <Tooltip.Portal>

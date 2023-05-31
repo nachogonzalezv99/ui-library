@@ -1,6 +1,6 @@
 {
   "name": "@nachogonzalezv99/ui-library",
-  "version": "0.0.13",
+  "version": "0.0.17",
   "description": "Technip react ui component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -40,8 +40,6 @@
     "jest-environment-jsdom": "^29.5.0",
     "postcss": "^8.4.24",
     "prop-types": "^15.8.1",
-    "react": "^18.2.0",
-    "react-dom": "^18.2.0",
     "react-icons": "^4.9.0",
     "rollup": "^3.23.0",
     "rollup-plugin-dts": "^5.3.0",
@@ -52,7 +50,8 @@
     "typescript": "^5.0.4"
   },
   "peerDependencies": {
-    "react": "^18.2.0"
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0"
   },
   "main": "dist/cjs/index.js",
   "module": "dist/esm/index.js",
@@ -62,5 +61,10 @@
   "types": "dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/nachogonzalezv99"
+  },
+  "dependencies": {
+    "@radix-ui/react-dialog": "^1.0.4",
+    "@radix-ui/react-dropdown-menu": "^2.0.5",
+    "@radix-ui/react-select": "^1.2.2"
   }
 }
