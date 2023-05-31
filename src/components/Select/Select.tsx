@@ -1,7 +1,7 @@
 import * as RadixSelect from "@radix-ui/react-select";
-import clsx from "clsx";
 import React, { ReactNode } from "react";
 import { AiOutlineCheck, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
+import { twMerge } from "tailwind-merge";
 
 interface SelectProps {
   placeholder?: string;
@@ -48,7 +48,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
   ({ children, className, value, ...props }, forwardedRef) => {
     return (
       <RadixSelect.Item
-        className={clsx(
+        className={twMerge(
           " text-gray-800 rounded-sm flex items-center pl-7 py-1 relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue-700 data-[highlighted]:text-white",
           className
         )}

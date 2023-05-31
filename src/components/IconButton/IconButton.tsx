@@ -1,7 +1,7 @@
 import React, { ComponentProps, forwardRef } from "react";
 import * as Tooltip from "@radix-ui/react-tooltip";
 import Spinner from "../Spinner";
-import clsx from "clsx";
+import { twMerge } from "tailwind-merge";
 
 const iconButtonVariants = {
   sm: "w-8 h-8 text-md",
@@ -34,15 +34,18 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
           <Tooltip.Trigger asChild>
             <button
               ref={ref}
-              className={` focus:ring-2 focus:ring-blue-300  focus:outline-none hover:bg-gray-600 hover:bg-opacity-10 disabled:text-gray-300 
-      disabled:bg-opacity-0  rounded-full flex items-center justify-center  text-gray-600 transition-colors ${iconButtonVariants[size]} ${className}`}
+              className={twMerge(
+                "focus:ring-2 focus:ring-blue-300  focus:outline-none hover:bg-gray-600 hover:bg-opacity-10 disabled:text-gray-300 disabled:bg-opacity-0  rounded-full flex items-center justify-center  text-gray-600 transition-colors",
+                iconButtonVariants[size],
+                className
+              )}
               disabled={isDisabled}
               {...other}
             >
               <div className="relative">
                 {isLoading && <Spinner />}
                 <span
-                  className={clsx(
+                  className={twMerge(
                     isLoading && "invisible",
                     "flex items-center justify-center text-center gap-2"
                   )}

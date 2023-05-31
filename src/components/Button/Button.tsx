@@ -1,6 +1,7 @@
-import clsx from "clsx";
+
 import React, { ComponentProps, ReactNode, forwardRef } from "react";
 import Spinner from "../Spinner";
+import { twMerge } from "tailwind-merge";
 
 const buttonSize = {
   sm: "px-3 py-2 text-base",
@@ -41,7 +42,7 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
       <div className="relative">
         {isLoading && <Spinner />}
         <span
-          className={clsx(
+          className={twMerge(
             isLoading && "invisible",
             "flex items-center justify-center text-center gap-2"
           )}
