@@ -11,6 +11,28 @@ type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
   args: {
-    id:"Hola"
+    id: "Hola",
+  },
+};
+
+export const Placeholder: Story = {
+  args: {
+    id: "Hola",
+    placeholder: "Email",
+  },
+};
+
+export const Disabled: Story = {
+  args: {
+    id: "Hola",
+    placeholder: "Email",
+    disabled: true,
+  },
+};
+
+export const Error: Story = {
+  args: {
+    id: "Hola",
+    error: "Email is required"
   },
 };

@@ -1,0 +1,31 @@
+import React from "react";
+import * as RadixCheckbox from "@radix-ui/react-checkbox";
+import { BsCheck } from "react-icons/bs";
+
+interface Props {
+  id: string;
+  checked?: string;
+  onCheckedChange?: () => void;
+  disabled?: boolean;
+}
+
+function Checkbox({ id, checked, onCheckedChange, disabled, ...props }: Props) {
+  return (
+    <div className="flex items-center gap-2">
+      <RadixCheckbox.Root
+        disabled={disabled}
+        onCheckedChange={onCheckedChange}
+        className="flex justify-center items-center bg-white hover:bg-gray-50 h-6 w-6 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-300 outline-none focus:ring-offset-2 data-[state=checked]:bg-blue-700 peer"
+        id="c1"
+        {...props}
+      >
+        <RadixCheckbox.Indicator>
+          <BsCheck className="text-white text-lg font-semibold " />
+        </RadixCheckbox.Indicator>
+      </RadixCheckbox.Root>
+      <label htmlFor="c1" className="peer-disabled:text-gray-300">Accept terms and conditions.</label>
+    </div>
+  );
+}
+
+export default Checkbox;

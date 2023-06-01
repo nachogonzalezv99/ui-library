@@ -14,7 +14,7 @@ function Select({ placeholder, value, onValueChange, children }: SelectProps) {
   return (
     <RadixSelect.Root value={value} onValueChange={onValueChange}>
       <RadixSelect.Trigger
-        className="w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-400 "
+        className="w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 "
         aria-label="Food"
       >
         <RadixSelect.Value placeholder={placeholder} />
@@ -49,7 +49,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
     return (
       <RadixSelect.Item
         className={twMerge(
-          " text-gray-800 rounded-sm flex items-center pl-7 py-1 relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-blue-700 data-[highlighted]:text-white",
+          " text-gray-500 rounded-[3px] flex items-center pl-7 py-1 relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-gray-100 data-[highlighted]:text-gray-800",
           className
         )}
         {...props}
@@ -73,7 +73,7 @@ interface SelectGroupProps {
 Select.Group = function SelectGroup({ label, children }: SelectGroupProps) {
   return (
     <RadixSelect.Group>
-      <RadixSelect.Label className="pl-7 text-gray-500 text-sm mb-1">
+      <RadixSelect.Label className="pl-7 text-gray-900 font-medium mb-1">
         {label}
       </RadixSelect.Label>
       {children}
