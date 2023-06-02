@@ -8,13 +8,23 @@ interface SelectProps {
   value?: string;
   onValueChange?: (value: string) => void;
   children: ReactNode;
+  collapse?: boolean;
 }
 
-function Select({ placeholder, value, onValueChange, children }: SelectProps) {
+function Select({
+  placeholder,
+  value,
+  onValueChange,
+  collapse,
+  children,
+}: SelectProps) {
   return (
     <RadixSelect.Root value={value} onValueChange={onValueChange}>
       <RadixSelect.Trigger
-        className="w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 "
+        className={twMerge(
+          "w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300",
+          collapse && "rounded-none border-none"
+        )}
         aria-label="Food"
       >
         <RadixSelect.Value placeholder={placeholder} />
