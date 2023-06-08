@@ -44,7 +44,7 @@ export const WithIconButton: Story = {
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.Item>
-            <button className="flex gap-2 items-center">
+            <button>
               <AiOutlineDelete />
               Delete
             </button>
@@ -63,16 +63,14 @@ export const WithDisabledButton: Story = {
     children: (
       <>
         <Dropdown.Trigger disabled>
-          <Button >
+          <Button>
             <AiOutlineDelete />
             Delete
           </Button>
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.Item>
-            <button>
-              Delete
-            </button>
+            <button>Delete</button>
           </Dropdown.Item>
           <Dropdown.Item>
             <button>hey</button>
@@ -95,9 +93,7 @@ export const WithLoadingButton: Story = {
         </Dropdown.Trigger>
         <Dropdown.Menu>
           <Dropdown.Item>
-            <button>
-              Delete
-            </button>
+            <button>Delete</button>
           </Dropdown.Item>
           <Dropdown.Item>
             <button>hey</button>
@@ -107,4 +103,3 @@ export const WithLoadingButton: Story = {
     ),
   },
 };
-

@@ -47,7 +47,7 @@ Dropdown.Item = function DropdownItem({ children }: DropdownItemProps) {
   return (
     <RadixDropdownMenu.Item
       asChild
-      className="text-left w-full text-gray-500 p-3 outline-none not:focus:hover:bg-gray-100 not:focus:hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 cursor-pointer rounded-[3px]"
+      className="flex gap-2 items-center w-full text-gray-500 p-3 outline-none not:focus:hover:bg-gray-100 not:focus:hover:text-gray-800 focus:bg-gray-100 focus:text-gray-800 cursor-pointer rounded-[3px]"
     >
       {children}
     </RadixDropdownMenu.Item>
