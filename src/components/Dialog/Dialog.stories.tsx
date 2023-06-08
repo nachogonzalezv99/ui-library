@@ -23,11 +23,9 @@ export const WithCustomButton: Story = {
         <Dialog.Content>
           <Dialog.Title>Title</Dialog.Title>
           <Dialog.Description>Description</Dialog.Description>
-          <div>
-            <ul>
-              <li>Other info</li>
-            </ul>
-          </div>
+          <Dialog.Close>
+            <Button variant="contained">Save changes</Button>
+          </Dialog.Close>
         </Dialog.Content>
       </>
     ),

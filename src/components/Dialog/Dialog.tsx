@@ -66,4 +66,11 @@ Dialog.Description = function DialogDescription({
   );
 };
 
+interface DialogCloseProps {
+  children: ReactNode;
+}
+Dialog.Close = function DialogClose({ children }: DialogCloseProps) {
+  return <RadixDialog.Close asChild>{children}</RadixDialog.Close>;
+};
+
 export default Dialog;
