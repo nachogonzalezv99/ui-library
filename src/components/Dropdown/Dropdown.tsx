@@ -3,9 +3,15 @@ import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 
 interface DropdownProps {
   children?: ReactNode;
+  open?: boolean;
+  onOpenChange: (open: boolean) => void;
 }
-function Dropdown({ children }: DropdownProps) {
-  return <RadixDropdownMenu.Root>{children}</RadixDropdownMenu.Root>;
+function Dropdown({ open, onOpenChange, children }: DropdownProps) {
+  return (
+    <RadixDropdownMenu.Root open={open} onOpenChange={onOpenChange}>
+      {children}
+    </RadixDropdownMenu.Root>
+  );
 }
 
 interface DropdownButtonProps {
