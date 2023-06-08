@@ -1,14 +1,14 @@
 import "@testing-library/jest-dom";
 import { render } from "@testing-library/react";
 import React from "react";
-import Sidebar from "./Sidebar";
+import Select from "./Select";
 
-describe("Sidebar", () => {
+describe("Select", () => {
   it("renders", () => {
     render(
-      <Sidebar>
-        <Sidebar.Item>Item</Sidebar.Item>
-      </Sidebar>
+      <Select>
+        <Select.Item value="item1">Tem 1</Select.Item>
+      </Select>
     );
   });
 });
