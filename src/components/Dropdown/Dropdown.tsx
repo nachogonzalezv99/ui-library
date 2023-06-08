@@ -4,7 +4,7 @@ import * as RadixDropdownMenu from "@radix-ui/react-dropdown-menu";
 interface DropdownProps {
   children?: ReactNode;
   open?: boolean;
-  onOpenChange: (open: boolean) => void;
+  onOpenChange?: (open: boolean) => void;
 }
 function Dropdown({ open, onOpenChange, children }: DropdownProps) {
   return (
@@ -16,6 +16,7 @@ function Dropdown({ open, onOpenChange, children }: DropdownProps) {
 
 interface DropdownButtonProps {
   disabled?: boolean;
+  isLoading?: boolean;
   children?: ReactNode;
 }
 Dropdown.Trigger = function DropdownTrigger({

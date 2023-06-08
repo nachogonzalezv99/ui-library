@@ -5,25 +5,22 @@ import * as RadixDialog from "@radix-ui/react-dialog";
 
 interface DialogProps {
   children: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
-function Dialog({ children }: DialogProps) {
-  return <RadixDialog.Root>{children}</RadixDialog.Root>;
+function Dialog({ open, onOpenChange, children }: DialogProps) {
+  return (
+    <RadixDialog.Root open={open} onOpenChange={onOpenChange}>
+      {children}
+    </RadixDialog.Root>
+  );
 }
 
 interface DialogTriggerProps {
   children: ReactNode;
-  disabled?: boolean;
 }
-Dialog.Trigger = function DialogTrigger({
-  disabled = false,
-  children,
-}: DialogTriggerProps) {
-  return (
-    <RadixDialog.Trigger asChild disabled={disabled}
-      >
-      {children}
-    </RadixDialog.Trigger>
-  );
+Dialog.Trigger = function DialogTrigger({ children }: DialogTriggerProps) {
+  return <RadixDialog.Trigger asChild>{children}</RadixDialog.Trigger>;
 };
 
 interface DialogContentProps {

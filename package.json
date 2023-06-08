@@ -1,6 +1,6 @@
 {
   "name": "@nachogonzalezv99/ui-library",
-  "version": "0.0.27",
+  "version": "0.0.29",
   "description": "Technip react ui component library",
   "scripts": {
     "rollup": "rollup -c",
