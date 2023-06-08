@@ -10,3 +10,4 @@ export { default as Spinner } from "./Spinner";
 export { default as TextField } from "./TextField";
 export { default as Badge } from "./Badge";
 export { default as AlertDialog } from "./AlertDialog";
+export { default as ErrorMessage } from "./ErrorMessage";
