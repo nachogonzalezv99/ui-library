@@ -3,9 +3,15 @@ import * as RadixAlertDialog from "@radix-ui/react-alert-dialog";
 
 interface AlertDialogProps {
   children: ReactNode;
+  open?: boolean;
+  onOpenChange?: (open: boolean) => void;
 }
-function AlertDialog({ children }: AlertDialogProps) {
-  return <RadixAlertDialog.Root>{children}</RadixAlertDialog.Root>;
+function AlertDialog({ open, onOpenChange, children }: AlertDialogProps) {
+  return (
+    <RadixAlertDialog.Root open={open} onOpenChange={onOpenChange}>
+      {children}
+    </RadixAlertDialog.Root>
+  );
 }
 
 interface AlertDialogTrigger {

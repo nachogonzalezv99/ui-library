@@ -8,7 +8,7 @@ function ErrorMessage({ error, resetErrorBoundary }: FallbackProps) {
       role="alert"
       className="h-full w-full  flex justify-center items-center"
     >
-      <div className="text-center max-w-96">
+      <div className="text-center max-w-3xl p-3">
         <h3 className="font-medium text-xl mb-2">Something went wrong</h3>
         <p className="text-gray-600 mb-2">{error.message}</p>
         <Button variant="contained" onClick={resetErrorBoundary}>

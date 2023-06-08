@@ -28,7 +28,7 @@ interface DialogContentProps {
 }
 Dialog.Content = function DialogContent({ children }: DialogContentProps) {
   return (
-    <RadixDialog.Portal>
+    <RadixDialog.Portal className="z-50">
       <RadixDialog.Overlay className="bg-black fixed inset-0 bg-opacity-20" />
       <RadixDialog.Content className="fixed  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-white rounded-md drop-shadow-md max-w-[30rem] min-w-[20rem]">
         {children}
