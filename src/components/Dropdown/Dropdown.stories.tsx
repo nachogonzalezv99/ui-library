@@ -58,6 +58,32 @@ export const WithIconButton: Story = {
   },
 };
 
+export const WithSeparator: Story = {
+  args: {
+    children: (
+      <>
+        <Dropdown.Trigger>
+          <IconButton>
+            <AiOutlineDelete />
+          </IconButton>
+        </Dropdown.Trigger>
+        <Dropdown.Menu>
+          <div className="p-2">
+            <p>Some text</p>
+          </div>
+          <Dropdown.Separator />
+          <Dropdown.Item>
+            <button>
+              <AiOutlineDelete />
+              Delete
+            </button>
+          </Dropdown.Item>
+        </Dropdown.Menu>
+      </>
+    ),
+  },
+};
+
 export const WithDisabledButton: Story = {
   args: {
     children: (

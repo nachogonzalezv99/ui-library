@@ -54,4 +54,8 @@ Dropdown.Item = function DropdownItem({ children }: DropdownItemProps) {
   );
 };
 
+Dropdown.Separator = function DropdownSeparator() {
+  return <RadixDropdownMenu.Separator className="border my-1" />;
+};
+
 export default Dropdown;
