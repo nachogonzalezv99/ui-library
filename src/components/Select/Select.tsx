@@ -4,6 +4,7 @@ import { AiOutlineCheck, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { twMerge } from "tailwind-merge";
 
 interface SelectProps {
+  id?: string;
   placeholder?: string;
   value?: string;
   onValueChange?: (value: string) => void;
@@ -13,6 +14,7 @@ interface SelectProps {
 }
 
 function Select({
+  id,
   placeholder,
   value,
   onValueChange,
@@ -27,6 +29,7 @@ function Select({
       defaultValue={defaultValue}
     >
       <RadixSelect.Trigger
+        id={id}
         className={twMerge(
           "w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300",
           collapse && "rounded-none border-none"
