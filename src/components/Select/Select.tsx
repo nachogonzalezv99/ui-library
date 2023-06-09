@@ -5,7 +5,7 @@ import { twMerge } from "tailwind-merge";
 
 interface SelectProps {
   id?: string;
-  name: string;
+  name?: string;
   placeholder?: string;
   value?: string;
   onValueChange?: (value: string) => void;
@@ -29,10 +29,10 @@ function Select({
       value={value}
       onValueChange={onValueChange}
       defaultValue={defaultValue}
+      name={name}
     >
       <RadixSelect.Trigger
         id={id}
-        name={name}
         className={twMerge(
           "w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300",
           collapse && "rounded-none border-none"
