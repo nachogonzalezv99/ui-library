@@ -37,8 +37,8 @@ AlertDialog.Content = function AlertDialogContent({
 }: AlertDialogContent) {
   return (
     <RadixAlertDialog.Portal>
-      <RadixAlertDialog.Overlay className="bg-black fixed inset-0 bg-opacity-20" />
-      <RadixAlertDialog.Content className="fixed  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6  bg-white rounded-md drop-shadow-md max-w-[30rem]">
+      <RadixAlertDialog.Overlay className="bg-black fixed inset-0 bg-opacity-20 z-50" />
+      <RadixAlertDialog.Content className="fixed  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6  bg-white rounded-md drop-shadow-md max-w-[30rem] z-50">
         {children}
       </RadixAlertDialog.Content>
     </RadixAlertDialog.Portal>
