@@ -9,17 +9,23 @@ interface SelectProps {
   onValueChange?: (value: string) => void;
   children: ReactNode;
   collapse?: boolean;
+  defaultValue?: string;
 }
 
 function Select({
   placeholder,
   value,
   onValueChange,
+  defaultValue,
   collapse,
   children,
 }: SelectProps) {
   return (
-    <RadixSelect.Root value={value} onValueChange={onValueChange}>
+    <RadixSelect.Root
+      value={value}
+      onValueChange={onValueChange}
+      defaultValue={defaultValue}
+    >
       <RadixSelect.Trigger
         className={twMerge(
           "w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300",
