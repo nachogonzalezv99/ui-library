@@ -7,13 +7,24 @@ interface Props {
   checked?: string;
   onCheckedChange?: () => void;
   disabled?: boolean;
+  defaultChecked?: boolean;
+  label: string;
 }
 
-function Checkbox({ id, checked, onCheckedChange, disabled, ...props }: Props) {
+function Checkbox({
+  id,
+  checked,
+  defaultChecked,
+  onCheckedChange,
+  disabled,
+  label,
+  ...props
+}: Props) {
   return (
     <div className="flex items-center gap-2">
       <RadixCheckbox.Root
         disabled={disabled}
+        defaultChecked={defaultChecked}
         onCheckedChange={onCheckedChange}
         className="flex justify-center items-center bg-white hover:bg-gray-50 h-6 w-6 border border-gray-300 rounded-md focus:ring-2 focus:ring-blue-300 outline-none focus:ring-offset-2 data-[state=checked]:bg-blue-700 peer"
         id="c1"
@@ -23,7 +34,9 @@ function Checkbox({ id, checked, onCheckedChange, disabled, ...props }: Props) {
           <BsCheck className="text-white text-lg font-semibold " />
         </RadixCheckbox.Indicator>
       </RadixCheckbox.Root>
-      <label htmlFor="c1" className="peer-disabled:text-gray-300">Accept terms and conditions.</label>
+      <label htmlFor="c1" className="peer-disabled:text-gray-300">
+        {label}
+      </label>
     </div>
   );
 }

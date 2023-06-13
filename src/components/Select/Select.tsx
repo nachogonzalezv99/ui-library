@@ -74,9 +74,10 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
           " text-gray-500 rounded-[3px] flex items-center pl-7 py-1 relative select-none data-[disabled]:text-mauve8 data-[disabled]:pointer-events-none data-[highlighted]:outline-none data-[highlighted]:bg-gray-100 data-[highlighted]:text-gray-800",
           className
         )}
+        value={value}
         {...props}
         ref={forwardedRef}
-        value={value}
+        
       >
         <RadixSelect.ItemText>{children}</RadixSelect.ItemText>
         <RadixSelect.ItemIndicator className="absolute left-0 w-[25px] inline-flex items-center justify-center">
@@ -86,6 +87,7 @@ const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
     );
   }
 );
+
 Select.Item = SelectItem;
 
 interface SelectGroupProps {
