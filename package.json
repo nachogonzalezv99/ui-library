@@ -1,6 +1,6 @@
 {
   "name": "@nachogonzalezv99/ui-library",
-  "version": "1.0.6",
+  "version": "1.0.8",
   "description": "Technip react ui component library",
   "scripts": {
     "rollup": "rollup -c",
@@ -72,5 +72,8 @@
   "types": "dist/index.d.ts",
   "publishConfig": {
     "registry": "https://npm.pkg.github.com/nachogonzalezv99"
+  },
+  "dependencies": {
+    "react-dropzone": "^14.2.3"
   }
 }

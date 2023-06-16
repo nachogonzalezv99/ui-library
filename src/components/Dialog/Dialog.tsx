@@ -30,7 +30,7 @@ Dialog.Content = function DialogContent({ children }: DialogContentProps) {
   return (
     <RadixDialog.Portal>
       <RadixDialog.Overlay className="bg-black fixed inset-0 bg-opacity-20 z-50" />
-      <RadixDialog.Content className="fixed  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-white rounded-md drop-shadow-md max-w-[30rem] min-w-[20rem] z-50">
+      <RadixDialog.Content className="fixed  top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 p-6 bg-white rounded-md drop-shadow-md max-w-[50rem] min-w-[20rem] z-50">
         {children}
         <RadixDialog.Close asChild>
           <IconButton size="sm" className="absolute top-2 right-2">
