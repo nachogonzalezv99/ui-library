@@ -100,3 +100,35 @@ export const WithLoadingButton: Story = {
     ),
   },
 };
+
+export const WithScrollbar: Story = {
+  args: {
+    children: (
+      <>
+        <Dialog.Trigger>
+          <Button variant="contained">
+            <AiOutlineSetting /> Settings
+          </Button>
+        </Dialog.Trigger>
+        <Dialog.Content>
+          <Dialog.Header>
+            <Dialog.Title>Title</Dialog.Title>
+            <Dialog.Description>Description</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
+            <div>
+              {Array(20)
+                .fill(0)
+                .map((item) => (
+                  <li>Other info </li>
+                ))}
+            </div>
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Button variant="contained">Save</Button>
+          </Dialog.Footer>
+        </Dialog.Content>
+      </>
+    ),
+  },
+};

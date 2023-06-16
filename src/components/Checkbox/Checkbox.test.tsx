@@ -5,6 +5,6 @@ import Checkbox from "./Checkbox";
 
 describe("Checkbox", () => {
   it("renders", () => {
-    render(<Checkbox id="check1" />);
+    render(<Checkbox id="check1" label="hey" name="hey" />);
   });
 });

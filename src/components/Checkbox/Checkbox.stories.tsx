@@ -11,9 +11,9 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Default: Story = {
-  args: { id: "checkbox" },
+  args: { id: "1", label: "hey", name: "hey" },
 };
 
 export const Disabled: Story = {
-  args: { id: "checkbox", disabled: true },
+  args: { id: "1", label: "hey", name: "hey", disabled: true },
 };

@@ -70,8 +70,9 @@ export const Collapse: Story = {
   },
 };
 
-export const Virtualize: Story = {
+export const Disabled: Story = {
   args: {
+    disabled: true,
     placeholder: "Select a role",
     children: <> <Select.Item value="user">User</Select.Item></>
   },
