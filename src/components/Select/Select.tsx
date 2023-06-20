@@ -13,6 +13,7 @@ interface SelectProps {
   collapse?: boolean;
   disabled?: boolean;
   defaultValue?: string;
+  label?: string;
 }
 
 function Select({
@@ -25,43 +26,55 @@ function Select({
   collapse,
   disabled,
   children,
+  label,
 }: SelectProps) {
   return (
-    <RadixSelect.Root
-      disabled={disabled}
-      value={value}
-      onValueChange={onValueChange}
-      defaultValue={defaultValue}
-      name={name}
-    >
-      <RadixSelect.Trigger
-        id={id}
-        className={twMerge(
-          "w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 text-red-200",
-          collapse && "rounded-none border-none",
-          disabled ? "text-gray-300" : (placeholder && value === undefined) ? "text-gray-500 ": "text-gray-900"
-        )}
-        aria-label="Food"
+    <div className="flex flex-col flex-1 w-full">
+      {label && (
+        <label htmlFor={id} className="block mb-1">
+          {label}
+        </label>
+      )}
+      <RadixSelect.Root
+        disabled={disabled}
+        value={value}
+        onValueChange={onValueChange}
+        defaultValue={defaultValue}
+        name={name}
       >
-        <RadixSelect.Value placeholder={placeholder} />
-        <RadixSelect.Icon>
-          <AiOutlineDown />
-        </RadixSelect.Icon>
-      </RadixSelect.Trigger>
-      <RadixSelect.Portal>
-        <RadixSelect.Content className="bg-white rounded-md shadow-lg border border-gray-300 z-50">
-          <RadixSelect.ScrollUpButton className="flex items-center justify-center text-gray-400 h-6 ">
-            <AiOutlineUp />
-          </RadixSelect.ScrollUpButton>
-          <RadixSelect.Viewport className="p-1">
-            {children}
-          </RadixSelect.Viewport>
-          <RadixSelect.ScrollDownButton className="flex items-center justify-center text-gray-400 h-6">
+        <RadixSelect.Trigger
+          id={id}
+          className={twMerge(
+            "w-full flex gap-2 items-center justify-between border border-gray-300 rounded-md p-3 focus:outline-none focus:ring-2 focus:ring-blue-300 text-red-200",
+            collapse && "rounded-none border-none",
+            disabled
+              ? "text-gray-300"
+              : placeholder && value === undefined
+              ? "text-gray-500 "
+              : "text-gray-900"
+          )}
+          aria-label="Food"
+        >
+          <RadixSelect.Value placeholder={placeholder} />
+          <RadixSelect.Icon>
             <AiOutlineDown />
-          </RadixSelect.ScrollDownButton>
-        </RadixSelect.Content>
-      </RadixSelect.Portal>
-    </RadixSelect.Root>
+          </RadixSelect.Icon>
+        </RadixSelect.Trigger>
+        <RadixSelect.Portal>
+          <RadixSelect.Content className="bg-white rounded-md shadow-lg border border-gray-300 z-50">
+            <RadixSelect.ScrollUpButton className="flex items-center justify-center text-gray-400 h-6 ">
+              <AiOutlineUp />
+            </RadixSelect.ScrollUpButton>
+            <RadixSelect.Viewport className="p-1">
+              {children}
+            </RadixSelect.Viewport>
+            <RadixSelect.ScrollDownButton className="flex items-center justify-center text-gray-400 h-6">
+              <AiOutlineDown />
+            </RadixSelect.ScrollDownButton>
+          </RadixSelect.Content>
+        </RadixSelect.Portal>
+      </RadixSelect.Root>
+    </div>
   );
 }
 

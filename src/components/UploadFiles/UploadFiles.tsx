@@ -83,8 +83,8 @@ function UploadFiles({
   };
 
   return (
-    <div>
-      {label && <label htmlFor={id}>{label}</label>}
+    <div className="flex flex-col flex-1 w-full">
+      {label && <label className="mb-1" htmlFor={id}>{label}</label>}
       <div
         {...getRootProps()}
         className={twMerge(

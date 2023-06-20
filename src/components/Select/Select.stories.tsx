@@ -13,6 +13,8 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: "Select a role",
+    label:"Role",
+    id: "uno",
     children: (
       <>
         <Select.Item value="user">User</Select.Item>

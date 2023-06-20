@@ -14,4 +14,5 @@ export { default as Sidebar } from "./Sidebar";
 export { default as Spinner } from "./Spinner";
 export { default as TextField } from "./TextField";
 export { default as UploadFiles } from "./UploadFiles";
+export { default as TextArea } from "./TextArea";
 
