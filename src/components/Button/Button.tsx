@@ -41,13 +41,13 @@ const Button = forwardRef<HTMLButtonElement, ButtonProps>(function Button(
     <button
       ref={ref}
       disabled={disabled || isLoading}
+      {...props}
       className={twMerge(
         "rounded-md transition-colors cursor-pointer focus:ring-2 focus:ring-blue-300 outline-none disabled:cursor-default",
         buttonVariants[variant],
         buttonSize[size],
         className
       )}
-      {...props}
     >
       <div className="relative">
         {isLoading && <Spinner />}

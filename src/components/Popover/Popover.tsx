@@ -25,7 +25,7 @@ Popover.Content = function PopoverContent({ children }: PopoverContentProps) {
   return (
     <RadixPopover.Portal>
       <RadixPopover.Content
-        className="bg-white border border-gray-300 rounded-md shadow-md z-20 p-3 min-w-[15rem]"
+        className="bg-white border border-gray-300 rounded-md shadow-md z-20 p-4 min-w-[15rem]"
         sideOffset={4}
         align="end"
       >

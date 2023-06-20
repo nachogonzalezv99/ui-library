@@ -12,7 +12,9 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     files: [],
-    setFiles: ()=>{}
+    setFiles: ()=>{},
+    label: "Files",
+    id:"file"
   },
 };
 

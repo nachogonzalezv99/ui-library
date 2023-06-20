@@ -21,11 +21,18 @@ export const WithCustomButton: Story = {
           <button>Click</button>
         </Dialog.Trigger>
         <Dialog.Content>
-          <Dialog.Title>Title</Dialog.Title>
-          <Dialog.Description>Description</Dialog.Description>
-          <Dialog.Close>
-            <Button variant="contained">Save changes</Button>
-          </Dialog.Close>
+          <Dialog.Header>
+            <Dialog.Title>Title</Dialog.Title>
+            <Dialog.Description>Description</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
+            <p>Body</p>
+          </Dialog.Body>
+          <Dialog.Footer>
+            <Dialog.Close>
+              <Button variant="contained">Save changes</Button>
+            </Dialog.Close>
+          </Dialog.Footer>
         </Dialog.Content>
       </>
     ),
@@ -42,13 +49,15 @@ export const WithIconButton: Story = {
           </IconButton>
         </Dialog.Trigger>
         <Dialog.Content>
-          <Dialog.Title>Title</Dialog.Title>
-          <Dialog.Description>Description</Dialog.Description>
-          <div>
+          <Dialog.Header>
+            <Dialog.Title>Title</Dialog.Title>
+            <Dialog.Description>Description</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
             <ul>
               <li>Other info</li>
             </ul>
-          </div>
+          </Dialog.Body>
         </Dialog.Content>
       </>
     ),
@@ -65,13 +74,15 @@ export const WithDisabledButton: Story = {
           </IconButton>
         </Dialog.Trigger>
         <Dialog.Content>
-          <Dialog.Title>Title</Dialog.Title>
-          <Dialog.Description>Description</Dialog.Description>
-          <div>
+          <Dialog.Header>
+            <Dialog.Title>Title</Dialog.Title>
+            <Dialog.Description>Description</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
             <ul>
               <li>Other info</li>
             </ul>
-          </div>
+          </Dialog.Body>
         </Dialog.Content>
       </>
     ),
@@ -88,13 +99,15 @@ export const WithLoadingButton: Story = {
           </Button>
         </Dialog.Trigger>
         <Dialog.Content>
-          <Dialog.Title>Title</Dialog.Title>
-          <Dialog.Description>Description</Dialog.Description>
-          <div>
+          <Dialog.Header>
+            <Dialog.Title>Title</Dialog.Title>
+            <Dialog.Description>Description</Dialog.Description>
+          </Dialog.Header>
+          <Dialog.Body>
             <ul>
               <li>Other info</li>
             </ul>
-          </div>
+          </Dialog.Body>
         </Dialog.Content>
       </>
     ),
@@ -117,10 +130,10 @@ export const WithScrollbar: Story = {
           </Dialog.Header>
           <Dialog.Body>
             <div>
-              {Array(20)
+              {Array(10)
                 .fill(0)
                 .map((item) => (
-                  <li>Other info </li>
+                  <li>Other info and important things</li>
                 ))}
             </div>
           </Dialog.Body>

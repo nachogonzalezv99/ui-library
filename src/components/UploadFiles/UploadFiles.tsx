@@ -1,6 +1,5 @@
-import React from "react";
-import { useCallback } from "react";
-import { Accept, DropEvent, FileRejection, useDropzone } from "react-dropzone";
+import React, { useCallback, useState } from "react";
+import { Accept, FileRejection, useDropzone } from "react-dropzone";
 import {
   AiOutlineCloudUpload,
   AiOutlineDelete,
@@ -33,6 +32,8 @@ interface FileProps {
   setFiles: (value: React.SetStateAction<File[]>) => void;
   files: File[];
   disabled?: boolean;
+  label?: string;
+  id?: string;
 }
 
 function UploadFiles({
@@ -42,11 +43,24 @@ function UploadFiles({
   setFiles,
   files,
   disabled,
+  label,
+  id,
 }: FileProps) {
-  const onDrop = useCallback((acceptedFiles: File[], fileRejections: FileRejection[], event: DropEvent) => {
-    setFiles((prev) => [...prev, ...acceptedFiles]);
-    console.log(fileRejections)
-  }, []);
+  const [error, setError] = useState<string | null>(null);
+  const onDrop = useCallback(
+    (acceptedFiles: File[], fileRejections: FileRejection[]) => {
+      setError(null);
+      if (
+        (maxFiles && fileRejections.length > maxFiles) ||
+        (maxFiles && files.length + acceptedFiles.length > maxFiles)
+      ) {
+        setError(`Max number of files: ${maxFiles}`);
+      } else {
+        setFiles((prev) => [...prev, ...acceptedFiles]);
+      }
+    },
+    [files]
+  );
 
   const { getRootProps, getInputProps, isDragActive } = useDropzone({
     disabled,
@@ -65,11 +79,12 @@ function UploadFiles({
   };
 
   const handleDelete = (index: number) => {
-    setFiles((prev) => prev.filter((file, i) => i !== index));
+    setFiles((prev) => prev.filter((_, i) => i !== index));
   };
 
   return (
     <div>
+      {label && <label htmlFor={id}>{label}</label>}
       <div
         {...getRootProps()}
         className={twMerge(
@@ -78,7 +93,7 @@ function UploadFiles({
           disabled && "cursor-default hover:bg-white"
         )}
       >
-        <input {...getInputProps()} />
+        <input {...getInputProps()} id={id} />
         <AiOutlineCloudUpload
           className={twMerge(
             "text-5xl text-gray-500",
@@ -108,6 +123,7 @@ function UploadFiles({
           )}
         </div>
       </div>
+      {error && <div className="text-sm text-red-600">{error}</div>}
       <div className="flex flex-col">
         {files.map((file, index) => (
           <div

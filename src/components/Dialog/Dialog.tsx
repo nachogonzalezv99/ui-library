@@ -2,6 +2,7 @@ import React, { ReactNode } from "react";
 import { AiOutlineClose } from "react-icons/ai";
 import IconButton from "../IconButton";
 import * as RadixDialog from "@radix-ui/react-dialog";
+import { twMerge } from "tailwind-merge";
 
 interface DialogProps {
   children: ReactNode;
@@ -30,7 +31,7 @@ Dialog.Content = function DialogContent({ children }: DialogContentProps) {
   return (
     <RadixDialog.Portal>
       <RadixDialog.Overlay className="bg-black fixed inset-0 bg-opacity-20 z-50" />
-      <RadixDialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-md max-h-[80vh] max-w-[50rem] min-w-[20rem] z-50 flex flex-col">
+      <RadixDialog.Content className="fixed top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 bg-white rounded-md shadow-md max-h-[80vh] min-h-[15rem] max-w-[50rem] min-w-[20rem] z-50 flex flex-col">
         {children}
         <RadixDialog.Close asChild>
           <IconButton size="sm" className="absolute top-2 right-2">
@@ -44,25 +45,35 @@ Dialog.Content = function DialogContent({ children }: DialogContentProps) {
 
 interface DialogHeaderProps {
   children: ReactNode;
+  className?: string;
 }
-Dialog.Header = function DialogHeader({ children }: DialogHeaderProps) {
-  return <div className="p-6 border-b">{children}</div>;
+Dialog.Header = function DialogHeader({
+  children,
+  className,
+}: DialogHeaderProps) {
+  return <div className={twMerge("p-4 border-b", className)}>{children}</div>;
 };
 
 interface DialogBodyProps {
   children: ReactNode;
+  className?: string;
 }
-Dialog.Body = function DialogBody({ children }: DialogBodyProps) {
-  return <div className="h-full overflow-y-auto p-6">{children}</div>;
+Dialog.Body = function DialogBody({ children, className }: DialogBodyProps) {
+  return (
+    <div className={twMerge("h-full overflow-y-auto p-4")}>{children}</div>
+  );
 };
 
 interface DialogFooterProps {
   children: ReactNode;
+  className?: string;
 }
-Dialog.Footer = function DialogFooter({ children }: DialogFooterProps) {
-  return <div className="p-6 border-t">{children}</div>;
+Dialog.Footer = function DialogFooter({
+  children,
+  className,
+}: DialogFooterProps) {
+  return <div className={twMerge("p-4 border-t", className)}>{children}</div>;
 };
-
 
 interface DialogTitleProps {
   children: ReactNode;

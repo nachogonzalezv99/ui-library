@@ -35,7 +35,7 @@ const IconButton = forwardRef<HTMLButtonElement, IconButtonProps>(
             <button
               ref={ref}
               className={twMerge(
-                "focus:ring-2 focus:ring-blue-300  focus:outline-none hover:bg-gray-600 hover:bg-opacity-10 disabled:text-gray-300 disabled:bg-opacity-0  rounded-full flex items-center justify-center  text-gray-600 transition-colors",
+                "shrink-0 focus:ring-2 focus:ring-blue-300  focus:outline-none hover:bg-gray-600 hover:bg-opacity-10 disabled:text-gray-300 disabled:bg-opacity-0  rounded-full flex items-center justify-center  text-gray-600 transition-colors",
                 iconButtonVariants[size],
                 className
               )}

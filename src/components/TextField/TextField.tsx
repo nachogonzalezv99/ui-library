@@ -16,7 +16,7 @@ function TextField({
   ...props
 }: TextFieldProps) {
   return (
-    <div className="flex flex-col">
+    <div className="flex flex-col w-full flex-1">
       {label && (
         <label htmlFor={id} className=" mb-2">
           {label}

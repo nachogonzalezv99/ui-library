@@ -23,20 +23,26 @@ export const Default: Story = {
           </IconButton>
         </AlertDialog.Trigger>
         <AlertDialog.Content>
-          <AlertDialog.Title>Título</AlertDialog.Title>
-          <AlertDialog.Description>
-            Constructs an object type whose property keys are Keys and whose
-            property values are Type. This utility can be used to map the
-            properties of a type to another type.
-          </AlertDialog.Description>
-          <div className="justify-end flex gap-2 mt-8">
-            <AlertDialog.Action>
-              <Button>Cancel</Button>
-            </AlertDialog.Action>
-            <AlertDialog.Action>
-              <Button variant="contained">Save changes</Button>
-            </AlertDialog.Action>
-          </div>
+          <AlertDialog.Header>
+            <AlertDialog.Title>Título</AlertDialog.Title>
+          </AlertDialog.Header>
+          <AlertDialog.Body>
+            <AlertDialog.Description>
+              Constructs an object type whose property keys are Keys and whose
+              property values are Type. This utility can be used to map the
+              properties of a type to another type.
+            </AlertDialog.Description>
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
+            <div className="justify-end flex gap-2">
+              <AlertDialog.Action>
+                <Button>Cancel</Button>
+              </AlertDialog.Action>
+              <AlertDialog.Action>
+                <Button variant="contained">Save changes</Button>
+              </AlertDialog.Action>
+            </div>
+          </AlertDialog.Footer>
         </AlertDialog.Content>
       </>
     ),
@@ -76,20 +82,26 @@ export const Destructive: Story = {
           </IconButton>
         </AlertDialog.Trigger>
         <AlertDialog.Content>
-          <AlertDialog.Title>Título</AlertDialog.Title>
-          <AlertDialog.Description>
-            Constructs an object type whose property keys are Keys and whose
-            property values are Type. This utility can be used to map the
-            properties of a type to another type.
-          </AlertDialog.Description>
-          <div className="justify-end flex gap-2 mt-8">
-            <AlertDialog.Action>
-              <Button>Cancel</Button>
-            </AlertDialog.Action>
-            <AlertDialog.Action>
-              <Button variant="destructive">Delete user</Button>
-            </AlertDialog.Action>
-          </div>
+          <AlertDialog.Header>
+            <AlertDialog.Title>Título</AlertDialog.Title>
+          </AlertDialog.Header>
+          <AlertDialog.Body>
+            <AlertDialog.Description>
+              Constructs an object type whose property keys are Keys and whose
+              property values are Type. This utility can be used to map the
+              properties of a type to another type.
+            </AlertDialog.Description>
+          </AlertDialog.Body>
+          <AlertDialog.Footer>
+            <div className="justify-end flex gap-2">
+              <AlertDialog.Action>
+                <Button>Cancel</Button>
+              </AlertDialog.Action>
+              <AlertDialog.Action>
+                <Button variant="destructive">Delete user</Button>
+              </AlertDialog.Action>
+            </div>
+          </AlertDialog.Footer>
         </AlertDialog.Content>
       </>
     ),
