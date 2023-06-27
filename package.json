@@ -1,5 +1,5 @@
 {
-  "name": "@nachogonzalezv99/ui-library",
+  "name": "@technip-dev/ui-library",
   "version": "1.1.30",
   "description": "Technip react ui component library",
   "scripts": {
@@ -73,7 +73,7 @@
   ],
   "types": "dist/index.d.ts",
   "publishConfig": {
-    "registry": "https://npm.pkg.github.com/nachogonzalezv99"
+    "registry": "https://npm.pkg.github.com/technip-dev"
   },
   "dependencies": {
     "react-dropzone": "^14.2.3"
