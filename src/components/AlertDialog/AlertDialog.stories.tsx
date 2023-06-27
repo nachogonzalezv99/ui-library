@@ -48,6 +48,7 @@ export const Default: Story = {
     ),
   },
 };
+
 export const TriggerDisabled: Story = {
   args: {
     children: (

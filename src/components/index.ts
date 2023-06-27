@@ -12,7 +12,8 @@ export { default as Popover } from "./Popover";
 export { default as Select } from "./Select";
 export { default as Sidebar } from "./Sidebar";
 export { default as Spinner } from "./Spinner";
+export { default as TextArea } from "./TextArea";
 export { default as TextField } from "./TextField";
 export { default as UploadFiles } from "./UploadFiles";
-export { default as TextArea } from "./TextArea";
+export { default as TreeView } from "./TreeView";
 

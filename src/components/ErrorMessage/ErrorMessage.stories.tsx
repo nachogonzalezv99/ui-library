@@ -11,5 +11,6 @@ type Story = StoryObj<typeof meta>;
 
 export const WithCustomButton: Story = {
   args: {
+    error: "Fail",
   },
 };
