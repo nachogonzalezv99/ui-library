@@ -1,6 +1,6 @@
 import type { Meta, StoryObj } from "@storybook/react";
 import React from "react";
-import Select from "./Select";
+import { Select, SelectItem } from "./Select";
 
 const meta = {
   title: "Select",
@@ -13,69 +13,39 @@ type Story = StoryObj<typeof meta>;
 export const Default: Story = {
   args: {
     placeholder: "Select a role",
-    label:"Role",
+    label: "Role",
     id: "uno",
     children: (
       <>
-        <Select.Item value="user">User</Select.Item>
-        <Select.Item value="manager">Manager</Select.Item>
-        <Select.Item value="admin">Admin</Select.Item>
+        <SelectItem value="user">User</SelectItem>
+        <SelectItem value="manager">Manager</SelectItem>
+        <SelectItem value="admin">Admin</SelectItem>
       </>
     ),
   },
 };
-
-export const Groups: Story = {
-  args: {
-    placeholder: "Select a project",
-    children: (
-      <>
-        <Select.Group label="Finances">
-          <Select.Item value="finance1">Finance project 1</Select.Item>
-          <Select.Item value="finance2">Finance project 2</Select.Item>
-          <Select.Item value="finance3">Finance project 3</Select.Item>
-        </Select.Group>
-        <Select.Separator />
-        <Select.Group label="Administration">
-          <Select.Item value="administration1">
-            Administration project 1
-          </Select.Item>
-          <Select.Item value="administration2">
-            Administration project 2
-          </Select.Item>
-          <Select.Item value="administration3">
-            Administration project 3
-          </Select.Item>
-        </Select.Group>
-        <Select.Separator />
-        <Select.Group label="Human resources">
-          <Select.Item value="human1">Human resources project 1</Select.Item>
-          <Select.Item value="human2">Human resources project 2</Select.Item>
-          <Select.Item value="human3">Human resources project 3</Select.Item>
-        </Select.Group>
-      </>
-    ),
-  },
-};
-
-export const Collapse: Story = {
-  args: {
-    placeholder: "Select a role",
-    collapse: true,
-    children: (
-      <>
-        <Select.Item value="user">User</Select.Item>
-        <Select.Item value="manager">Manager</Select.Item>
-        <Select.Item value="admin">Admin</Select.Item>
-      </>
-    ),
-  },
-};
-
 export const Disabled: Story = {
   args: {
+    id: "dos",
     disabled: true,
     placeholder: "Select a role",
-    children: <> <Select.Item value="user">User</Select.Item></>
+    children: (
+      <>
+        <SelectItem value="user">User</SelectItem>
+      </>
+    ),
+  },
+};
+
+export const Error: Story = {
+  args: {
+    id: "dos",
+    placeholder: "Select a role",
+    error: "Required",
+    children: (
+      <>
+        <SelectItem value="user">User</SelectItem>
+      </>
+    ),
   },
 };

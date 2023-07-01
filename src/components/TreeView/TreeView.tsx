@@ -64,7 +64,9 @@ TreeView.Item = function TreeViewItem({
               <AiOutlineRight />
             </IconButton>
 
-            <p> {label}</p>
+            <p className="text-ellipsis overflow-hidden whitespace-nowrap">
+              {label}
+            </p>
           </div>
           {actions && (
             <div className="flex opacity-0 group-hover:opacity-100 transition-opacity focus-within:opacity-100">
