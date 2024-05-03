@@ -10,6 +10,7 @@ import {
   SelectTrigger,
 } from "../Select/Select";
 import {
+  ComponentErrorMessage,
   ComponentSizesType,
   componentSizes,
   innerComponentSize,
@@ -22,6 +23,8 @@ interface BaseFieldProps {
   label?: string;
   sz?: ComponentSizesType;
   required?: boolean;
+  isLoading?: boolean;
+  error?: string;
   children: ReactNode;
 }
 
@@ -30,19 +33,28 @@ export function BaseField({
   sz = "md",
   required,
   label,
+  isLoading = false,
+  error,
   children,
 }: BaseFieldProps) {
   return (
     <div className="flex flex-col gap-1">
       <Label value={label} id={id} required={required} />
-      <div
-        className={twMerge(
-          "flex w-full border border-gray-300 rounded-md bg-white divide-x overflow-hidden",
-          componentSizes[sz]
-        )}
-      >
-        {children}
-      </div>
+      {isLoading ? (
+        <div
+          className={`bg-gray-200 animate-pulse rounded-md ${componentSizes[sz]}`}
+        />
+      ) : (
+        <div
+          className={twMerge(
+            "flex w-full border border-gray-300 rounded-md bg-white divide-x overflow-hidden",
+            componentSizes[sz]
+          )}
+        >
+          {children}
+        </div>
+      )}
+      <ComponentErrorMessage error={error} />
     </div>
   );
 }
@@ -51,6 +63,7 @@ interface BaseFieldInputProps extends ComponentProps<"input"> {
   sz?: ComponentSizesType;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
+  error?: string;
 }
 
 export function BaseFieldInput({
@@ -58,14 +71,20 @@ export function BaseFieldInput({
   startAdornment,
   endAdornment,
   sz = "md",
+  disabled,
+  error,
   ...props
 }: BaseFieldInputProps) {
   return (
     <label
       htmlFor={id}
       className={twMerge(
-        "flex-1 flex items-center h-full ring-inset focus-within:ring-2 focus-within:ring-blue-300 cursor-text first:rounded-l-[5px] last:rounded-r-[5px]",
-        innerComponentSize[sz]
+        "flex-1 flex items-center h-full ring-inset focus-within:ring-2 cursor-text first:rounded-l-[5px] last:rounded-r-[5px]",
+        innerComponentSize[sz],
+        disabled && "bg-gray-100",
+        error
+          ? "ring-2 ring-red-300 focus-within:ring-red-500"
+          : "focus-within:ring-blue-300"
       )}
     >
       {startAdornment && (
@@ -74,6 +93,7 @@ export function BaseFieldInput({
 
       <input
         id={id}
+        disabled={disabled}
         className="w-full h-full outline-none bg-transparent"
         {...props}
       />
@@ -108,17 +128,25 @@ export function BaseFieldSection({
 export default function Input() {
   return (
     <div className="flex flex-col gap-4">
-      <BaseField id="users" label="Text" required>
+      <BaseField required label="Weight" id="weight">
+        <BaseFieldInput id="weight" endAdornment="kg" placeholder="Hola" />
+      </BaseField>
+
+      <BaseField id="users" label="Text" isLoading>
         <BaseFieldInput id="users" type="password" />
       </BaseField>
 
-      <BaseField>
-        <BaseFieldInput id="users" endAdornment="kg" />
+      <BaseField required label="Weight" id="weight">
+        <BaseFieldInput id="weight" endAdornment="kg" disabled />
       </BaseField>
 
-      <BaseField>
+      <BaseField required label="Weight" id="weight" error="Required field">
+        <BaseFieldInput id="weight" endAdornment="kg" error="Required field" />
+      </BaseField>
+
+      <BaseField error="Required field">
         <BaseFieldSection>https://</BaseFieldSection>
-        <BaseFieldInput id="users" />
+        <BaseFieldInput id="users" error="Required field" />
         <BaseFieldSection>.com</BaseFieldSection>
       </BaseField>
 
@@ -151,10 +179,6 @@ export default function Input() {
           </SelectPortal>
         </BaseSelect>
       </BaseField>
-
-      <Button>Hola</Button>
-      <Button variant="contained">Hola</Button>
-      <Button variant="text">Hola</Button>
     </div>
   );
 }

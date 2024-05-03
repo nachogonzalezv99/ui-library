@@ -11,3 +11,9 @@ export const innerComponentSize: Record<ComponentSizesType, string> = {
   md: "px-4 gap-4",
   lg: "px-5 gap-5",
 };
+
+export function ComponentErrorMessage({ error }: { error?: string }) {
+  return Boolean(error) ? (
+    <p className="text-red-600 text-sm">{error}</p>
+  ) : null;
+}
