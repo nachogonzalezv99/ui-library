@@ -1,34 +1,53 @@
-import { ReactNode } from "react";
-import { AiOutlineMail } from "react-icons/ai";
+import { ComponentProps, ReactNode } from "react";
+import { AiOutlineCopy, AiOutlineMail } from "react-icons/ai";
 import { twMerge } from "tailwind-merge";
 import Button, { ButtonContent } from "../Button/Button";
+import {
+  BaseSelect,
+  SelectContent,
+  SelectItem,
+  SelectPortal,
+  SelectTrigger,
+} from "../Select/Select";
 import {
   ComponentSizesType,
   componentSizes,
   innerComponentSize,
 } from "../shared";
-import { Select, SelectItem } from "../Select/Select";
+import { Label } from "../Label/Label";
+import { IconButtonContent } from "../IconButton/IconButton";
 
 interface BaseFieldProps {
+  id?: string;
+  label?: string;
   sz?: ComponentSizesType;
+  required?: boolean;
   children: ReactNode;
 }
 
-export function BaseField({ sz = "md", children }: BaseFieldProps) {
+export function BaseField({
+  id,
+  sz = "md",
+  required,
+  label,
+  children,
+}: BaseFieldProps) {
   return (
-    <div
-      className={twMerge(
-        "flex w-full border border-gray-300 rounded-md bg-white divide-x overflow-hidden",
-        componentSizes[sz]
-      )}
-    >
-      {children}
+    <div className="flex flex-col gap-1">
+      <Label value={label} id={id} required={required} />
+      <div
+        className={twMerge(
+          "flex w-full border border-gray-300 rounded-md bg-white divide-x overflow-hidden",
+          componentSizes[sz]
+        )}
+      >
+        {children}
+      </div>
     </div>
   );
 }
 
-interface BaseFieldInputProps {
-  id: string;
+interface BaseFieldInputProps extends ComponentProps<"input"> {
   sz?: ComponentSizesType;
   startAdornment?: ReactNode;
   endAdornment?: ReactNode;
@@ -39,6 +58,7 @@ export function BaseFieldInput({
   startAdornment,
   endAdornment,
   sz = "md",
+  ...props
 }: BaseFieldInputProps) {
   return (
     <label
@@ -52,7 +72,11 @@ export function BaseFieldInput({
         <span className="select-none text-gray-400">{startAdornment}</span>
       )}
 
-      <input id={id} className="w-full h-full outline-none bg-transparent" />
+      <input
+        id={id}
+        className="w-full h-full outline-none bg-transparent"
+        {...props}
+      />
 
       {endAdornment && (
         <span className="select-none text-gray-400">{endAdornment}</span>
@@ -84,8 +108,8 @@ export function BaseFieldSection({
 export default function Input() {
   return (
     <div className="flex flex-col gap-4">
-      <BaseField>
-        <BaseFieldInput id="users" />
+      <BaseField id="users" label="Text" required>
+        <BaseFieldInput id="users" type="password" />
       </BaseField>
 
       <BaseField>
@@ -104,22 +128,29 @@ export default function Input() {
       </BaseField>
 
       <BaseField>
+        <BaseFieldInput id="users" />
+        <IconButtonContent>
+          <AiOutlineCopy />
+        </IconButtonContent>
+      </BaseField>
+
+      <BaseField>
         <BaseFieldInput id="users" startAdornment={<AiOutlineMail />} />
         <ButtonContent variant="contained">Send email</ButtonContent>
       </BaseField>
 
       <BaseField>
         <BaseFieldInput id="users" />
-        <Select defaultValue="usd">
-          <SelectItem value="usd">USD</SelectItem>
-          <SelectItem value="eur">EUR</SelectItem>
-        </Select>
+        <BaseSelect>
+          <SelectTrigger>
+            <SelectContent />
+          </SelectTrigger>
+          <SelectPortal>
+            <SelectItem value="usd">USD</SelectItem>
+            <SelectItem value="eur">EUR</SelectItem>
+          </SelectPortal>
+        </BaseSelect>
       </BaseField>
-
-      <Select defaultValue="usd">
-        <SelectItem value="usd">USD</SelectItem>
-        <SelectItem value="eur">EUR</SelectItem>
-      </Select>
 
       <Button>Hola</Button>
       <Button variant="contained">Hola</Button>

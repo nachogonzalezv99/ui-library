@@ -9,12 +9,14 @@ export function Label({
   required = false,
   value,
   className,
+  id,
   ...props
 }: ILabel) {
   return (
     value && (
       <label
         test-id="label"
+        htmlFor={id}
         {...props}
         className={twMerge(
           "text-gray-500 text-sm flex items-center gap-2",

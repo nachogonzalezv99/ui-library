@@ -3,12 +3,8 @@ import { SelectItemProps, SelectProps } from "@radix-ui/react-select";
 import React, { ReactNode, useState } from "react";
 import { AiOutlineCheck, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { twMerge } from "tailwind-merge";
-import {
-  ComponentSizesType,
-  componentSizes,
-  innerComponentSize,
-} from "../shared";
 import { BaseField } from "../BaseFieldContainer/BaseFieldContainer";
+import { ComponentSizesType, innerComponentSize } from "../shared";
 
 export interface CustomSelectProps extends SelectProps {
   placeholder?: string;
@@ -28,116 +24,73 @@ export interface CustomSelectProps extends SelectProps {
   onChange?: (a: any) => void;
 }
 
-interface SelectContentProps {
-  sz?: ComponentSizesType;
+export function BaseSelect({
+  children,
+  label,
+  id,
+  placeholder,
+  value,
+  disabled,
+  readOnly,
+  error,
+  name,
+  sz = "md",
+  defaultValue,
+  onChange,
+  className,
+  isLoading = false,
+  collapsed,
+  ...props
+}: CustomSelectProps) {
+  const [selectedOption, setSelectedOption] = useState<string | null>(null);
+
+  return (
+    <SelectPrimitive.Root
+      disabled={disabled || readOnly}
+      name={name}
+      defaultValue={defaultValue}
+      value={value}
+      {...props}
+      onValueChange={(value) => {
+        setSelectedOption(value);
+        if (onChange) onChange({ target: { name, value } });
+      }}
+    >
+      {children}
+    </SelectPrimitive.Root>
+  );
+}
+
+interface SelectTriggerProps {
   children: ReactNode;
 }
-export function SelectContent({ sz = "md", children }: SelectContentProps) {
-  return (
-    <SelectPrimitive.Trigger className="outline-none">
-      <BaseField>
-        <span
-          className={twMerge(
-            "flex justify-between items-center w-full",
-            innerComponentSize[sz]
-          )}
-        >
-          <SelectPrimitive.Value />
 
-          <SelectPrimitive.Icon>
-            <AiOutlineDown className={twMerge("h-4 w-4 text-gray-400")} />
-          </SelectPrimitive.Icon>
-        </span>
-      </BaseField>
+export function SelectTrigger({ children }: SelectTriggerProps) {
+  return (
+    <SelectPrimitive.Trigger className="outline-none ring-inset focus:ring-2 focus:ring-blue-300 first:rounded-l-[5px] last:rounded-r-[5px]">
+      {children}
     </SelectPrimitive.Trigger>
   );
 }
 
-export const Select = React.forwardRef<HTMLButtonElement, CustomSelectProps>(
-  (
-    {
-      children,
-      label,
-      id,
-      placeholder,
-      value,
-      disabled,
-      readOnly,
-      error,
-      name,
-      sz = "md",
-      defaultValue,
-      onChange,
-      className,
-      isLoading = false,
-      collapsed,
-      ...props
-    },
-    forwardedRef
-  ) => {
-    const [selectedOption, setSelectedOption] = useState<string | null>(null);
+export function SelectPortal({ children }: { children: ReactNode }) {
+  return (
+    <SelectPrimitive.Portal>
+      <SelectPrimitive.Content className="bg-white rounded-md shadow-lg border border-gray-300 z-50">
+        <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-gray-400 h-6 ">
+          <AiOutlineUp />
+        </SelectPrimitive.ScrollUpButton>
+        <SelectPrimitive.Viewport className="p-1">
+          {children}
+        </SelectPrimitive.Viewport>
 
-    return (
-      <div className="flex flex-col flex-1 w-full">
-        <SelectPrimitive.Root
-          disabled={disabled || readOnly}
-          name={name}
-          defaultValue={defaultValue}
-          value={value}
-          {...props}
-          onValueChange={(value) => {
-            setSelectedOption(value);
-            if (onChange) onChange({ target: { name, value } });
-          }}
-        >
-          <SelectPrimitive.Trigger
-            ref={forwardedRef}
-            value={value}
-            id={id}
-            className="outline-none"
-          >
-            <BaseField>
-              <span
-                className={twMerge(
-                  "flex justify-between items-center w-full",
-                  innerComponentSize[sz]
-                )}
-              >
-                <SelectPrimitive.Value placeholder={placeholder} />
-                {!readOnly && (
-                  <SelectPrimitive.Icon>
-                    <AiOutlineDown
-                      className={twMerge(
-                        "h-4 w-4 text-gray-400",
-                        disabled && "text-gray-300"
-                      )}
-                    />
-                  </SelectPrimitive.Icon>
-                )}
-              </span>
-            </BaseField>
-          </SelectPrimitive.Trigger>
-          <SelectPrimitive.Portal>
-            <SelectPrimitive.Content className="bg-white rounded-md shadow-lg border border-gray-300 z-50">
-              <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-gray-400 h-6 ">
-                <AiOutlineUp />
-              </SelectPrimitive.ScrollUpButton>
-              <SelectPrimitive.Viewport className="p-1">
-                {children}
-              </SelectPrimitive.Viewport>
-
-              <SelectPrimitive.ScrollDownButton className="flex items-center justify-center text-gray-400 h-6">
-                <AiOutlineDown />
-              </SelectPrimitive.ScrollDownButton>
-            </SelectPrimitive.Content>
-          </SelectPrimitive.Portal>
-        </SelectPrimitive.Root>
-
-        {Boolean(error) && <p className="text-red-600 text-sm mt-1">{error}</p>}
-      </div>
-    );
-  }
-);
+        <SelectPrimitive.ScrollDownButton className="flex items-center justify-center text-gray-400 h-6">
+          <AiOutlineDown />
+        </SelectPrimitive.ScrollDownButton>
+      </SelectPrimitive.Content>
+    </SelectPrimitive.Portal>
+  );
+}
 
 export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
   ({ children, value, className, ...props }, forwardedRef) => {
@@ -159,3 +112,39 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
     );
   }
 );
+
+export function SelectContent({ sz = "md" }: { sz?: ComponentSizesType }) {
+  return (
+    <span
+      className={twMerge(
+        "flex justify-between items-center w-full h-full",
+        innerComponentSize[sz]
+      )}
+    >
+      <SelectPrimitive.Value />
+
+      <SelectPrimitive.Icon>
+        <AiOutlineDown className={twMerge("h-4 w-4 text-gray-400")} />
+      </SelectPrimitive.Icon>
+    </span>
+  );
+}
+
+export function Select({
+  sz = "md",
+  children,
+}: {
+  sz?: ComponentSizesType;
+  children: ReactNode;
+}) {
+  return (
+    <BaseSelect>
+      <SelectTrigger>
+        <BaseField>
+          <SelectContent sz={sz} />
+        </BaseField>
+      </SelectTrigger>
+      <SelectPortal>{children}</SelectPortal>
+    </BaseSelect>
+  );
+}
