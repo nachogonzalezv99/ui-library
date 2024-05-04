@@ -5,7 +5,7 @@ interface ILabel extends ComponentProps<"label"> {
   required?: boolean;
   value?: string;
 }
-export function Label({
+export default function Label({
   required = false,
   value,
   className,

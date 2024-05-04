@@ -17,3 +17,4 @@ export function ComponentErrorMessage({ error }: { error?: string }) {
     <p className="text-red-600 text-sm">{error}</p>
   ) : null;
 }
+

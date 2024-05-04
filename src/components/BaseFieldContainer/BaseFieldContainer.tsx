@@ -15,7 +15,7 @@ import {
   componentSizes,
   innerComponentSize,
 } from "../shared";
-import { Label } from "../Label/Label";
+import Label from "../Label/Label";
 import { IconButtonContent } from "../IconButton/IconButton";
 
 interface BaseFieldProps {
@@ -72,6 +72,7 @@ export function BaseFieldInput({
   endAdornment,
   sz = "md",
   disabled,
+  readOnly,
   error,
   ...props
 }: BaseFieldInputProps) {
@@ -82,6 +83,7 @@ export function BaseFieldInput({
         "flex-1 flex items-center h-full ring-inset focus-within:ring-2 cursor-text first:rounded-l-[5px] last:rounded-r-[5px]",
         innerComponentSize[sz],
         disabled && "bg-gray-100",
+        readOnly && "bg-gray-50",
         error
           ? "ring-2 ring-red-300 focus-within:ring-red-500"
           : "focus-within:ring-blue-300"
@@ -94,6 +96,7 @@ export function BaseFieldInput({
       <input
         id={id}
         disabled={disabled}
+        readOnly={readOnly}
         className="w-full h-full outline-none bg-transparent"
         {...props}
       />
@@ -132,12 +135,21 @@ export default function Input() {
         <BaseFieldInput id="weight" endAdornment="kg" placeholder="Hola" />
       </BaseField>
 
-      <BaseField id="users" label="Text" isLoading>
+      <BaseField id="users" label="Loading" isLoading>
         <BaseFieldInput id="users" type="password" />
       </BaseField>
 
-      <BaseField required label="Weight" id="weight">
+      <BaseField required label="Disabled" id="weight">
         <BaseFieldInput id="weight" endAdornment="kg" disabled />
+      </BaseField>
+
+      <BaseField required label="Read only" id="weight">
+        <BaseFieldInput
+          id="weight"
+          endAdornment="kg"
+          readOnly
+          defaultValue="Default value"
+        />
       </BaseField>
 
       <BaseField required label="Weight" id="weight" error="Required field">
