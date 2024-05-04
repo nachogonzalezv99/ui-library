@@ -59,7 +59,7 @@ export const Default: Story = {
               <BaseFieldInput id="name" />
             </BaseField>
 
-            <div className="flex justify-between">
+            <div className="flex justify-between gap-3">
               <BaseField id="weight" label="Weight">
                 <BaseFieldInput id="weight" endAdornment="kg"/>
               </BaseField>

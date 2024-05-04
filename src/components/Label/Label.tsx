@@ -1,4 +1,4 @@
-import { ComponentProps } from "react";
+import { ComponentProps, useState } from "react";
 import { twMerge } from "tailwind-merge";
 import IconButton from "../IconButton/IconButton";
 import { AiOutlineInfo, AiOutlineInfoCircle } from "react-icons/ai";
@@ -17,6 +17,8 @@ export default function Label({
   id,
   ...props
 }: ILabel) {
+  const [open, setOpen] = useState(false);
+
   return (
     value && (
       <label
@@ -32,8 +34,10 @@ export default function Label({
           {value} {required && <span className="text-red-500">*</span>}
         </span>
         {info && (
-          <ToolTip>
-            <ToolTip.Trigger asChild={false}><AiOutlineInfoCircle /></ToolTip.Trigger>
+          <ToolTip open={open} onOpenChange={setOpen}>
+            <ToolTip.Trigger asChild={false} onClick={() => setOpen(true)} type="button">
+              <AiOutlineInfoCircle />
+            </ToolTip.Trigger>
             <ToolTip.Content>{info}</ToolTip.Content>
           </ToolTip>
         )}
