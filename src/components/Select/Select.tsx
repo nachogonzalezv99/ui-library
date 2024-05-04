@@ -1,9 +1,12 @@
 import * as SelectPrimitive from "@radix-ui/react-select";
 import { SelectItemProps, SelectProps } from "@radix-ui/react-select";
-import React, { ReactNode, useState } from "react";
+import React, { ReactElement, ReactNode, useState } from "react";
 import { AiOutlineCheck, AiOutlineDown, AiOutlineUp } from "react-icons/ai";
 import { twMerge } from "tailwind-merge";
-import { BaseField } from "../BaseFieldContainer/BaseFieldContainer";
+import {
+  BaseField,
+  BaseFieldProps,
+} from "../BaseFieldContainer/BaseFieldContainer";
 import { ComponentSizesType, innerComponentSize } from "../shared";
 
 export interface CustomSelectProps extends SelectProps {
@@ -61,14 +64,37 @@ export function BaseSelect({
   );
 }
 
-interface SelectTriggerProps {
-  children: ReactNode;
+interface SelectTriggerProps extends SelectPrimitive.SelectTriggerProps {
+  sz?: ComponentSizesType;
+  fullWidth?: boolean;
 }
-
-export function SelectTrigger({ children }: SelectTriggerProps) {
+export function SelectTrigger({
+  className,
+  sz = "md",
+  fullWidth=false,
+  ...props
+}: SelectTriggerProps) {
   return (
-    <SelectPrimitive.Trigger className="outline-none ring-inset focus:ring-2 focus:ring-blue-300 first:rounded-l-[5px] last:rounded-r-[5px]">
-      {children}
+    <SelectPrimitive.Trigger
+      {...props}
+      className={twMerge(
+        "outline-none ring-inset focus:ring-2 focus:ring-blue-300 first:rounded-l-[5px] last:rounded-r-[5px]",
+        fullWidth && "w-full",
+        className
+      )}
+    >
+      <span
+        className={twMerge(
+          "flex justify-between items-center w-full h-full",
+          innerComponentSize[sz]
+        )}
+      >
+        <SelectPrimitive.Value />
+
+        <SelectPrimitive.Icon>
+          <AiOutlineDown className={twMerge("h-4 w-4 text-gray-400")} />
+        </SelectPrimitive.Icon>
+      </span>
     </SelectPrimitive.Trigger>
   );
 }
@@ -76,7 +102,11 @@ export function SelectTrigger({ children }: SelectTriggerProps) {
 export function SelectPortal({ children }: { children: ReactNode }) {
   return (
     <SelectPrimitive.Portal>
-      <SelectPrimitive.Content className="bg-white rounded-md shadow-lg border border-gray-300 z-50">
+      <SelectPrimitive.Content
+        position="popper"
+        sideOffset={5}
+        className="bg-white rounded-md shadow-lg border border-gray-300 z-50 w-[var(--radix-select-trigger-width)]"
+      >
         <SelectPrimitive.ScrollUpButton className="flex items-center justify-center text-gray-400 h-6 ">
           <AiOutlineUp />
         </SelectPrimitive.ScrollUpButton>
@@ -104,47 +134,24 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
         {...props}
         ref={forwardedRef}
       >
-        <SelectPrimitive.ItemText>{children}</SelectPrimitive.ItemText>
         <SelectPrimitive.ItemIndicator className="absolute left-0 w-[25px] inline-flex items-center justify-center">
           <AiOutlineCheck />
         </SelectPrimitive.ItemIndicator>
+        <SelectPrimitive.ItemText>
+          <span className="flex items-center gap-1">{children}</span>
+        </SelectPrimitive.ItemText>
       </SelectPrimitive.Item>
     );
   }
 );
 
-export function SelectContent({ sz = "md" }: { sz?: ComponentSizesType }) {
+export function Select({ sz = "md", id, children, ...props }: BaseFieldProps) {
   return (
-    <span
-      className={twMerge(
-        "flex justify-between items-center w-full h-full",
-        innerComponentSize[sz]
-      )}
-    >
-      <SelectPrimitive.Value />
-
-      <SelectPrimitive.Icon>
-        <AiOutlineDown className={twMerge("h-4 w-4 text-gray-400")} />
-      </SelectPrimitive.Icon>
-    </span>
-  );
-}
-
-export function Select({
-  sz = "md",
-  children,
-}: {
-  sz?: ComponentSizesType;
-  children: ReactNode;
-}) {
-  return (
-    <BaseSelect>
-      <SelectTrigger>
-        <BaseField>
-          <SelectContent sz={sz} />
-        </BaseField>
-      </SelectTrigger>
-      <SelectPortal>{children}</SelectPortal>
-    </BaseSelect>
+    <BaseField id={id} {...props}>
+      <BaseSelect>
+        <SelectTrigger fullWidth id={id} />
+        <SelectPortal>{children}</SelectPortal>
+      </BaseSelect>
+    </BaseField>
   );
 }

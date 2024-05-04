@@ -17,11 +17,13 @@ const buttonVariants: Record<ButtonVariants, string> = {
 interface ButtonContentProps extends ComponentProps<"button"> {
   sz?: ComponentSizesType;
   variant?: ButtonVariants;
+  fullWidth?: boolean;
 }
 export function ButtonContent({
   sz = "md",
   variant = "text",
   children,
+  fullWidth = false,
   className,
   ...props
 }: ButtonContentProps) {
@@ -29,9 +31,10 @@ export function ButtonContent({
     <button
       {...props}
       className={twMerge(
-        "flex items-center h-full transition-colors cursor-pointer outline-none ring-inset focus-within:ring-2 focus-within:ring-blue-300 first:rounded-l-[5px] last:rounded-r-[5px]",
+        "flex items-center justify-center h-full transition-colors cursor-pointer outline-none ring-inset focus-within:ring-2 focus-within:ring-blue-300 first:rounded-l-[5px] last:rounded-r-[5px]",
         innerComponentSize[sz],
         buttonVariants[variant],
+        fullWidth && "w-full",
         className
       )}
     >
@@ -43,6 +46,7 @@ export function ButtonContent({
 interface ButtonProps extends ComponentProps<"button"> {
   sz?: ComponentSizesType;
   variant?: ButtonVariants;
+  fullWidth?: boolean;
 }
 export default function Button({
   sz = "md",
@@ -51,9 +55,7 @@ export default function Button({
   ...props
 }: ButtonProps) {
   return (
-    <div
-      className={twMerge("inline-flex w-fit rounded-md", componentSizes[sz])}
-    >
+    <div className={twMerge("rounded-md", componentSizes[sz])}>
       <ButtonContent sz={sz} variant={variant} {...props}>
         {children}
       </ButtonContent>

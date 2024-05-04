@@ -1,10 +1,11 @@
 import { ComponentProps, ReactNode } from "react";
 import { AiOutlineCopy, AiOutlineMail } from "react-icons/ai";
 import { twMerge } from "tailwind-merge";
-import Button, { ButtonContent } from "../Button/Button";
+import { ButtonContent } from "../Button/Button";
+import { IconButtonContent } from "../IconButton/IconButton";
+import Label from "../Label/Label";
 import {
   BaseSelect,
-  SelectContent,
   SelectItem,
   SelectPortal,
   SelectTrigger,
@@ -15,11 +16,11 @@ import {
   componentSizes,
   innerComponentSize,
 } from "../shared";
-import Label from "../Label/Label";
-import { IconButtonContent } from "../IconButton/IconButton";
+import ComponentGroup from "../ComponentGroup/ComponentGroup";
 
-interface BaseFieldProps {
+export interface BaseFieldProps {
   id?: string;
+  info?: string;
   label?: string;
   sz?: ComponentSizesType;
   required?: boolean;
@@ -31,6 +32,7 @@ interface BaseFieldProps {
 export function BaseField({
   id,
   sz = "md",
+  info,
   required,
   label,
   isLoading = false,
@@ -39,20 +41,13 @@ export function BaseField({
 }: BaseFieldProps) {
   return (
     <div className="flex flex-col gap-1">
-      <Label value={label} id={id} required={required} />
+      <Label value={label} id={id} required={required} info={info} />
       {isLoading ? (
         <div
           className={`bg-gray-200 animate-pulse rounded-md ${componentSizes[sz]}`}
         />
       ) : (
-        <div
-          className={twMerge(
-            "flex w-full border border-gray-300 rounded-md bg-white divide-x overflow-hidden",
-            componentSizes[sz]
-          )}
-        >
-          {children}
-        </div>
+        <ComponentGroup>{children}</ComponentGroup>
       )}
       <ComponentErrorMessage error={error} />
     </div>
@@ -131,7 +126,12 @@ export function BaseFieldSection({
 export default function Input() {
   return (
     <div className="flex flex-col gap-4">
-      <BaseField required label="Weight" id="weight">
+      <BaseField
+        required
+        label="Weight"
+        id="weight"
+        info="Selecciona el país o región donde se ha constituido tu empresa. Si eres un particular, selecciona el lugar desde donde realizas tus actividades comerciales."
+      >
         <BaseFieldInput id="weight" endAdornment="kg" placeholder="Hola" />
       </BaseField>
 
@@ -140,7 +140,12 @@ export default function Input() {
       </BaseField>
 
       <BaseField required label="Disabled" id="weight">
-        <BaseFieldInput id="weight" endAdornment="kg" disabled />
+        <BaseFieldInput
+          id="weight"
+          endAdornment="kg"
+          defaultValue="Default value"
+          disabled
+        />
       </BaseField>
 
       <BaseField required label="Read only" id="weight">
@@ -154,6 +159,12 @@ export default function Input() {
 
       <BaseField required label="Weight" id="weight" error="Required field">
         <BaseFieldInput id="weight" endAdornment="kg" error="Required field" />
+      </BaseField>
+
+      <BaseField>
+        <BaseFieldInput id="weight" />
+        <ButtonContent>+</ButtonContent>
+        <ButtonContent>-</ButtonContent>
       </BaseField>
 
       <BaseField error="Required field">
@@ -182,9 +193,7 @@ export default function Input() {
       <BaseField>
         <BaseFieldInput id="users" />
         <BaseSelect>
-          <SelectTrigger>
-            <SelectContent />
-          </SelectTrigger>
+          <SelectTrigger />
           <SelectPortal>
             <SelectItem value="usd">USD</SelectItem>
             <SelectItem value="eur">EUR</SelectItem>

@@ -53,3 +53,12 @@ export const Text: Story = {
       sz: "lg",
     },
   };
+
+  export const Tooltip: Story = {
+    args: {
+      children: "B",
+      variant: "contained",
+      sz: "lg",
+      tooltip: "Some text"
+    },
+  };
