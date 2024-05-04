@@ -1,14 +1,18 @@
 import type { StoryObj } from "@storybook/react";
 import {
-    BaseField,
-    BaseFieldInput,
+  BaseField,
+  BaseFieldInput,
 } from "../components/BaseFieldContainer/BaseFieldContainer";
 import Button from "../components/Button/Button";
 import Card from "../components/Card/Card";
 import { Select, SelectItem } from "../components/Select/Select";
+import Checkbox from "../components/Checkbox/Checkbox";
 
 const meta = {
   title: "Examples/CreateAccountForm",
+  parameters: {
+    layout: 'centered',
+  },
 };
 
 export default meta;
@@ -32,6 +36,7 @@ export const Default: Story = {
 
           <Select
             required
+            defaultValue="spain"
             label="Country"
             id="country"
             info="Selecciona el país o región donde se ha constituido tu empresa. Si eres un particular, selecciona el lugar desde donde realizas tus actividades comerciales."
@@ -42,7 +47,7 @@ export const Default: Story = {
                 src="http://purecatamphetamine.github.io/country-flag-icons/3x2/ES.svg"
                 className="w-4 rounded-sm"
               />
-              <p>Spain</p>
+              Spain
             </SelectItem>
             <SelectItem value="usa">
               <img
@@ -58,12 +63,27 @@ export const Default: Story = {
             <BaseFieldInput id="password" type="password" />
           </BaseField>
 
+          <Checkbox id="confirm">
+            <p className="text-gray-500 text-sm">
+              Quiero recibir correos electrónicos sobre recursos y
+              actualizaciones de productos. Si esta casilla está marcada, de vez
+              en cuando Stripe te enviará correos electrónicos relevantes que
+              pueden ser útiles. Puedes{" "}
+              <a href="" className="text-blue-700">
+                cancelar la suscripción
+              </a>{" "}
+              en cualquier momento.{" "}
+              <a href="" className="text-blue-700">
+                Política de privacidad
+              </a>
+            </p>
+          </Checkbox>
+
           <Button variant="contained" fullWidth>
             Create account
           </Button>
         </form>
       </Card.Body>
-      <Card.Footer></Card.Footer>
     </Card>
   ),
 };

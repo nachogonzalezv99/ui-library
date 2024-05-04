@@ -54,3 +54,10 @@ export const Large: Story = {
   },
 };
 
+export const Loading: Story = {
+  args: {
+    children: "Button",
+    variant: "contained",
+    isLoading: true,
+  },
+};

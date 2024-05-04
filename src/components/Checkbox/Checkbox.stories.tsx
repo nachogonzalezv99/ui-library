@@ -11,7 +11,8 @@ export default meta;
 type Story = StoryObj<typeof meta>;
 
 export const Text: Story = {
-    args: {
-    },
-  };
-  
+  args: {
+    id:"confirm",
+    children: "Are you sure?",
+  },
+};

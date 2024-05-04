@@ -14,7 +14,7 @@ export default function Checkbox({
   ...props
 }: RadixCheckbox.CheckboxProps) {
   return (
-    <div className="flex items-center gap-2">
+    <div className="flex  gap-2">
       <RadixCheckbox.Root
         disabled={disabled}
         name={name}

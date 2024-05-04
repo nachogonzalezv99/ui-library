@@ -71,7 +71,7 @@ interface SelectTriggerProps extends SelectPrimitive.SelectTriggerProps {
 export function SelectTrigger({
   className,
   sz = "md",
-  fullWidth=false,
+  fullWidth = false,
   ...props
 }: SelectTriggerProps) {
   return (
@@ -145,10 +145,19 @@ export const SelectItem = React.forwardRef<HTMLDivElement, SelectItemProps>(
   }
 );
 
-export function Select({ sz = "md", id, children, ...props }: BaseFieldProps) {
+interface ISelectProps extends BaseFieldProps {
+  defaultValue?: string;
+}
+export function Select({
+  sz = "md",
+  defaultValue,
+  id,
+  children,
+  ...props
+}: ISelectProps) {
   return (
     <BaseField id={id} {...props}>
-      <BaseSelect>
+      <BaseSelect defaultValue={defaultValue}>
         <SelectTrigger fullWidth id={id} />
         <SelectPortal>{children}</SelectPortal>
       </BaseSelect>

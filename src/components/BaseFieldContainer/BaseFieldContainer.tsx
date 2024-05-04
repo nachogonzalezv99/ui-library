@@ -78,7 +78,6 @@ export function BaseFieldInput({
         "flex-1 flex items-center h-full ring-inset focus-within:ring-2 cursor-text first:rounded-l-[5px] last:rounded-r-[5px]",
         innerComponentSize[sz],
         disabled && "bg-gray-100",
-        readOnly && "bg-gray-50",
         error
           ? "ring-2 ring-red-300 focus-within:ring-red-500"
           : "focus-within:ring-blue-300"
